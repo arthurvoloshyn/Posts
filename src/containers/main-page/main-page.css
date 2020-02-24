@@ -1,0 +1,15 @@
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.create-ad {
+  margin: 20px auto;
+}
+
+.post-desc {
+  white-space: pre-line;
+  overflow: hidden;
+}
