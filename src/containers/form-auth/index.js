@@ -92,13 +92,12 @@ const FormAuth = () => {
 
   return (
     <form className="form-signin" onSubmit={onSubmit}>
-      <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <h1 className="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
       <input
         type="text"
         id="userName"
         className="form-control"
         placeholder="Name"
-        required=""
         value={userName}
         onChange={onSetName}
       />
@@ -107,7 +106,6 @@ const FormAuth = () => {
         id="inputPassword"
         className="form-control"
         placeholder="Password"
-        required=""
         value={pass}
         onChange={onSetPass}
       />
