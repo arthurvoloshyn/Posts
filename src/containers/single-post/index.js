@@ -1,40 +1,38 @@
 import React, {useContext} from "react";
 import {withRouter} from "react-router-dom";
-import {UserContext} from "../context/index";
-import useFunc from "../context/use-func";
+import {UserContext} from "../../context/index";
+import { getReadDate } from '../../utils';
+import localStorageService from '../../services';
 
-const SinglePost = (props) => {
-  const {getReadDate} = useFunc()
+const SinglePost = ({ match: {params: {id}}, history }) => {
   const [state, setState] = useContext(UserContext);
   const {articles, userAuth, users} = state;
-  const {match: {params: {id}}, history} = props;
 
-  const article = articles ? articles.find(el => el.created_ad === id) : null;
+  const article = articles ? articles.find(({ created_ad }) => created_ad === id) : null;
 
   if(!article) {
     return <div className="container"><h2>Post not found</h2></div>
   }
 
   const {title, description, author, created_ad} = article;
-  let date = new Date(created_ad * 1000);
-  const readDate = getReadDate(date);
+  const readDate = getReadDate(created_ad);
 
   const delPost = () => {
-    const newArticles = articles.filter( el => el.title !== article.title || el.desc !== article.desc );
+    const newArticles = articles.filter(({ title, desc }) => title !== article.title || desc !== article.desc );
 
     setState(state => ({...state, articles: newArticles}))
     const newState = {
       users,
       articles: newArticles
     };
-    localStorage.setItem('state', JSON.stringify(newState))
+
+    const service = new localStorageService();
+    service.setItem(newState);
 
     history.push('/');
   };
 
-  const delButton = userAuth !== null && userAuth.userName === article.author ? <button type="button" className="btn btn-danger" onClick={delPost}>Delete</button> : null
-
-
+  const delButton = userAuth !== null && userAuth.userName === article.author ? <button type="button" className="btn btn-danger" onClick={delPost}>Delete</button> : null;
 
   return (
     <div className="container">

@@ -1,24 +1,24 @@
 import React from "react";
+import { prev, next } from '../../constants';
 
 const Pagination = ({totalItems, currentPage, paginate}) => {
 
   if(totalItems <= 1) {
-    return null
+    return null;
   }
 
-  const paginateArrow = (operator) => {
-    paginate(operator)
-  };
+  const nextPage = () => paginate(next);
+  const prevPage = () => paginate(prev);
 
   return (
     <div className="row ">
       <div className="col-12 col_space-between">
-        <button onClick={()=>{paginateArrow('-')}} className="arrow-left">{'<'}</button>
+        <button onClick={prevPage} className="arrow-left">{'<'}</button>
         <span>{currentPage} of {totalItems}</span>
-        <button onClick={()=>{paginateArrow('+')}} className="arrow-right">{'>'}</button>
+        <button onClick={nextPage} className="arrow-right">{'>'}</button>
       </div>
     </div>
   )
-}
+};
 
 export default Pagination;

@@ -1,7 +1,8 @@
 import React, {useContext} from "react";
 import {Link, Redirect} from "react-router-dom";
 import './header.css';
-import {UserContext} from "../context";
+import {UserContext} from "../../context";
+import localStorageService from "../../services";
 
 const Header = () => {
   const [state, setState] = useContext(UserContext);
@@ -22,7 +23,9 @@ const Header = () => {
       users,
       articles
     };
-    localStorage.setItem('state', JSON.stringify(newState));
+
+    const service = new localStorageService();
+    service.setItem(newState);
 
     return <Redirect to="/"/>
   };

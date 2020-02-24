@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
-import {UserContext} from "../context";
+import {UserContext} from "../../context";
 import './form-auth.css'
+import localStorageService from "../../services";
 
 
 
@@ -62,8 +63,9 @@ const FormAuth = () => {
       users,
       articles
     };
-    localStorage.setItem('state', JSON.stringify(newState));
 
+    const service = new localStorageService();
+    service.setItem(newState);
 
     setUserName('');
     setPass('');

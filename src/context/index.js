@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from "react";
+import localStorageService from "../services";
 
-const UserContext = React.createContext([{}, () => {
-}]);
+const UserContext = React.createContext([{}, () => {}]);
 
-const UserProvider = props => {
-  const localStorageState = JSON.parse(localStorage.getItem('state'))
+const UserProvider = ({ children }) => {
+    const service = new localStorageService();
+  const localStorageState = service.getItem();
   const [state, setState] = useState({
     userAuth: null,
-    articles: localStorageState ? JSON.parse(localStorage.getItem('state')).articles : [],
-    users: localStorageState ? JSON.parse(localStorage.getItem('state')).users : []
+    articles: localStorageState ? localStorageState.articles : [],
+    users: localStorageState ? localStorageState.users : []
   });
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const UserProvider = props => {
 
   return (
     <UserContext.Provider value={[state, setState]}>
-      {props.children}
+      {children}
     </UserContext.Provider>
   )
 };

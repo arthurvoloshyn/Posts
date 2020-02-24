@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
-import {UserContext} from "../context";
+import {UserContext} from "../../context";
 import {Redirect, withRouter} from "react-router-dom";
+import localStorageService from "../../services";
 
 const Edit = props => {
   const {history} = props;
@@ -52,7 +53,8 @@ const Edit = props => {
       articles
     };
 
-    localStorage.setItem('state', JSON.stringify(newState));
+    const service = new localStorageService();
+    service.setItem(newState);
 
     history.push(`/${stamp}`);
     setTitle('');
