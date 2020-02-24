@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
-import localStorageService from "../services";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import LocalStorageService from '../services';
 
 const UserContext = React.createContext([{}, () => {}]);
 
 const UserProvider = ({ children }) => {
-    const service = new localStorageService();
+  const service = new LocalStorageService();
   const localStorageState = service.getItem();
   const [state, setState] = useState({
     userAuth: null,
@@ -13,17 +15,21 @@ const UserProvider = ({ children }) => {
   });
 
   useEffect(() => {
-      const idx = state.users.findIndex(el => el.auth);
-      if (idx >= 0) {
-        setState(state => ({...state, userAuth: state.users[idx]}))
-      }
+    const idx = state.users.findIndex(el => el.auth);
+    if (idx >= 0) {
+      setState(state => ({ ...state, userAuth: state.users[idx] }));
+    }
   }, [state.users]);
 
-  return (
-    <UserContext.Provider value={[state, setState]}>
-      {children}
-    </UserContext.Provider>
-  )
+  return <UserContext.Provider value={[state, setState]}>{children}</UserContext.Provider>;
 };
 
-export {UserContext, UserProvider}
+UserProvider.propTypes = {
+  children: PropTypes.element
+};
+
+UserProvider.defaultProps = {
+  children: null
+};
+
+export { UserContext, UserProvider };

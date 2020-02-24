@@ -7,9 +7,9 @@
   margin-bottom: 20px;
 }
 .title-post {
+  display: inline-block;
   font-size: 32px;
-  text-overflow: ellipsis;
   max-width: 100%;
   overflow: hidden;
-  display: inline-block;
+  text-overflow: ellipsis;
 }

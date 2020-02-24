@@ -1,38 +1,54 @@
-import React, {useContext} from "react";
-import {withRouter} from "react-router-dom";
-import {UserContext} from "../../context/index";
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
+import { UserContext } from '../../context/index';
 import { getReadDate } from '../../utils';
-import localStorageService from '../../services';
+import LocalStorageService from '../../services';
+import PropTypes from 'prop-types';
 
-const SinglePost = ({ match: {params: {id}}, history }) => {
+const SinglePost = ({
+  match: {
+    params: { id }
+  },
+  history
+}) => {
   const [state, setState] = useContext(UserContext);
-  const {articles, userAuth, users} = state;
+  const { articles, userAuth, users } = state;
 
   const article = articles ? articles.find(({ created_ad }) => created_ad === id) : null;
 
-  if(!article) {
-    return <div className="container"><h2>Post not found</h2></div>
+  if (!article) {
+    return (
+      <div className="container">
+        <h2>Post not found</h2>
+      </div>
+    );
   }
 
-  const {title, description, author, created_ad} = article;
+  const { title, description, author, created_ad } = article;
   const readDate = getReadDate(created_ad);
 
   const delPost = () => {
-    const newArticles = articles.filter(({ title, desc }) => title !== article.title || desc !== article.desc );
+    const newArticles = articles.filter(({ title, desc }) => title !== article.title || desc !== article.desc);
 
-    setState(state => ({...state, articles: newArticles}))
+    setState(state => ({ ...state, articles: newArticles }));
+
     const newState = {
       users,
       articles: newArticles
     };
 
-    const service = new localStorageService();
+    const service = new LocalStorageService();
     service.setItem(newState);
 
     history.push('/');
   };
 
-  const delButton = userAuth !== null && userAuth.userName === article.author ? <button type="button" className="btn btn-danger" onClick={delPost}>Delete</button> : null;
+  const delButton =
+    userAuth !== null && userAuth.userName === article.author ? (
+      <button type="button" className="btn btn-danger" onClick={delPost}>
+        Delete
+      </button>
+    ) : null;
 
   return (
     <div className="container">
@@ -46,7 +62,29 @@ const SinglePost = ({ match: {params: {id}}, history }) => {
       </div>
       {delButton}
     </div>
-  )
+  );
+};
+
+SinglePost.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
+};
+
+SinglePost.defaultProps = {
+  match: {
+    params: {
+      id: ''
+    }
+  },
+  history: {
+    push: () => {}
+  }
 };
 
 export default withRouter(SinglePost);
