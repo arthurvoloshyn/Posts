@@ -67,13 +67,13 @@ const Edit = ({ history }) => {
 
   const checkFieldEmpty = checkEmpty ? (
     <div className="alert alert-danger" role="alert">
-      поля не должны быть пустыми
+      Fields must not be empty.
     </div>
   ) : null;
 
   const checkForm = check ? (
     <div className="alert alert-danger" role="alert">
-      поля формы должны иметь более 4 символов и title не должен иметь больше 24 символов
+      Form fields must have more than 4 characters and title should not have more than 24 characters.
     </div>
   ) : null;
 

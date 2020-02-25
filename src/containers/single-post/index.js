@@ -6,7 +6,7 @@ import { UserContext } from '../../context/index';
 
 import { getReadDate } from '../../utils';
 
-import LocalStorageService from '../../services';
+import DelButton from '../del-button';
 
 const SinglePost = ({
   match: {
@@ -27,31 +27,8 @@ const SinglePost = ({
     );
   }
 
-  const { title, description, author, created_ad } = article;
+  const { title, description, author, created_ad, desc } = article;
   const readDate = getReadDate(created_ad);
-
-  const delPost = () => {
-    const newArticles = articles.filter(({ title, desc }) => title !== article.title || desc !== article.desc);
-
-    setState(state => ({ ...state, articles: newArticles }));
-
-    const newState = {
-      users,
-      articles: newArticles
-    };
-
-    const service = new LocalStorageService();
-    service.setItem(newState);
-
-    history.push('/');
-  };
-
-  const delButton =
-    userAuth !== null && userAuth.userName === article.author ? (
-      <button type="button" className="btn btn-danger" onClick={delPost}>
-        Delete
-      </button>
-    ) : null;
 
   return (
     <div className="container">
@@ -63,7 +40,7 @@ const SinglePost = ({
           <div className="col-6">{readDate}</div>
         </div>
       </div>
-      {delButton}
+      <DelButton articles={articles} title={title} desc={desc} history={history} author={author} setState={setState} userAuth={userAuth} users={users} />
     </div>
   );
 };
@@ -74,9 +51,7 @@ SinglePost.propTypes = {
       id: PropTypes.string
     })
   }),
-  history: PropTypes.shape({
-    push: PropTypes.func
-  })
+  history: PropTypes.object
 };
 
 SinglePost.defaultProps = {
@@ -85,9 +60,7 @@ SinglePost.defaultProps = {
       id: ''
     }
   },
-  history: {
-    push: () => {}
-  }
+  history: {}
 };
 
 export default withRouter(SinglePost);

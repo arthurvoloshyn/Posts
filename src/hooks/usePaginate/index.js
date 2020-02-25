@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { next, prev } from '../../constants';
+import { next, prev, firstPage } from '../../constants';
 
 import { getDataForCurrentPage } from '../../utils';
 
@@ -14,7 +14,7 @@ const usePaginate = articles => {
         setCurrentPage(currentPage + 1);
       }
     } else if (operator === prev) {
-      if (currentPage !== 1) {
+      if (currentPage !== firstPage) {
         setCurrentPage(currentPage - 1);
       }
     }

@@ -7,6 +7,8 @@ export const listPerPage = 5;
 export const prev = 'prev';
 export const next = 'next';
 
+export const firstPage = 1;
+
 export const conf = [
   {
     id: 0,

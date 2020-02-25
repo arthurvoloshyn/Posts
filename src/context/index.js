@@ -23,7 +23,9 @@ const UserProvider = ({ children }) => {
     }
   }, [state.users]);
 
-  return <UserContext.Provider value={[state, setState]}>{children}</UserContext.Provider>;
+  const value = [state, setState];
+
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 UserProvider.propTypes = {

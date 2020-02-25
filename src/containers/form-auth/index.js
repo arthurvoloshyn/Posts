@@ -89,25 +89,25 @@ const FormAuth = () => {
 
   const warning = check ? (
     <div className="alert alert-danger" role="alert">
-      поля формы должны иметь более 2 символов и не больше 14
+      Form fields must have more than 2 characters and no more than 14.
     </div>
   ) : null;
 
   const warningName = checkName ? (
     <div className="alert alert-danger" role="alert">
-      неправильно ввели имя
+      Wrong name entered.
     </div>
   ) : null;
 
   const warningEmpty = checkEmpty ? (
     <div className="alert alert-danger" role="alert">
-      поля не должны быть пустыми или иметь пробелы
+      Fields must not be empty or have spaces.
     </div>
   ) : null;
 
   const warningPass = checkPass ? (
     <div className="alert alert-danger" role="alert">
-      неправильно ввели пароль
+      Password entered incorrectly.
     </div>
   ) : null;
 
