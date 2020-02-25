@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import './header.css';
+
 import { UserContext } from '../../context';
+
 import LocalStorageService from '../../services';
+
+import './header.css';
 
 const Header = () => {
   const [state, setState] = useContext(UserContext);
@@ -17,7 +20,9 @@ const Header = () => {
       }
       return item;
     });
+
     setState(state => ({ ...state, users, userAuth: null }));
+
     const newState = {
       users,
       articles

@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { withRouter } from 'react-router-dom';
-import { UserContext } from '../../context/index';
-import { getReadDate } from '../../utils';
-import LocalStorageService from '../../services';
 import PropTypes from 'prop-types';
+
+import { UserContext } from '../../context/index';
+
+import { getReadDate } from '../../utils';
+
+import LocalStorageService from '../../services';
 
 const SinglePost = ({
   match: {

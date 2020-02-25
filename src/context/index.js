@@ -8,6 +8,7 @@ const UserContext = React.createContext([{}, () => {}]);
 const UserProvider = ({ children }) => {
   const service = new LocalStorageService();
   const localStorageState = service.getItem();
+
   const [state, setState] = useState({
     userAuth: null,
     articles: localStorageState ? localStorageState.articles : [],
@@ -16,6 +17,7 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const idx = state.users.findIndex(el => el.auth);
+
     if (idx >= 0) {
       setState(state => ({ ...state, userAuth: state.users[idx] }));
     }

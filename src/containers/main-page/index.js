@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
-import FormAuth from '../form-auth';
-import Articles from '../../components/aricles';
-import { UserContext } from '../../context';
-
-import './main-page.css';
-import Pagination from '../../components/pagination';
 import { Link } from 'react-router-dom';
+
+import { UserContext } from '../../context';
 
 import usePaginate from '../../hooks/usePaginate';
 
+import Articles from '../../components/aricles';
+import Pagination from '../../components/pagination';
+
+import FormAuth from '../form-auth';
+
+import './main-page.css';
+
 const MainPage = () => {
   const [state] = useContext(UserContext);
-
   const { articles, userAuth } = state;
 
   const [currentPage, paginate, totalItemsPagination, currentArticles] = usePaginate(articles);

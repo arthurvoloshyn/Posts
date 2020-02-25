@@ -1,12 +1,14 @@
 import { listPerPage } from '../constants';
 
+const addPadStart = string => string.padStart(2, '0');
+
 export const getReadDate = created_ad => {
   const newDate = new Date(created_ad * 1000);
 
-  const hours = `${newDate.getHours()}`.padStart(2, '0');
-  const minutes = `${newDate.getMinutes()}`.padStart(2, '0');
-  const day = `${newDate.getDate()}`.padStart(2, '0');
-  const month = `${newDate.getMonth() + 1}`.padStart(2, '0');
+  const hours = addPadStart(`${newDate.getHours()}`);
+  const minutes = addPadStart(`${newDate.getMinutes()}`);
+  const day = addPadStart(`${newDate.getDate()}`);
+  const month = addPadStart(`${newDate.getMonth() + 1}`);
   const year = newDate.getFullYear();
 
   const readDate = created_ad ? `${hours} : ${minutes} - ${day} : ${month} : ${year}` : null;
@@ -22,3 +24,5 @@ export const getDataForCurrentPage = (currentPage, articles) => {
 
   return [totalItemsPagination, currentArticles];
 };
+
+export const stamp = (Date.now() / 1000).toFixed(0);

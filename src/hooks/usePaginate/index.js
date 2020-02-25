@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { next, prev } from '../../constants';
+
 import { getDataForCurrentPage } from '../../utils';
 
 const usePaginate = articles => {

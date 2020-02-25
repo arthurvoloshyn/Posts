@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../../context';
 import { Redirect, withRouter } from 'react-router-dom';
-import LocalStorageService from '../../services';
 import PropTypes from 'prop-types';
+
+import { UserContext } from '../../context';
+
+import LocalStorageService from '../../services';
+
+import { stamp } from '../../utils';
 
 const Edit = ({ history }) => {
   const [state, setState] = useContext(UserContext);
@@ -35,8 +39,6 @@ const Edit = ({ history }) => {
     }
 
     setCheck(false);
-
-    const stamp = (Date.now() / 1000).toFixed(0);
 
     // article
     const article = {
