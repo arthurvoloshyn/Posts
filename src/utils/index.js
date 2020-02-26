@@ -27,8 +27,6 @@ export const getDataForCurrentPage = (currentPage, articles) => {
   return [totalItemsPagination, currentArticles];
 };
 
-export const stamp = (Date.now() / 1000).toFixed(0);
-
 export const emptyFieldValidation = (firstField, secondField) => !!(!firstField.trim() || !secondField.trim());
 export const fieldLengthValidation = (userName, pass) => !!(userName.length < 3 || userName.length > 14 || pass.length < 3 || pass.length > 14);
 export const checkData = (data, firstUser, secondUser) => firstUser[data].toLowerCase() !== secondUser[data].toLowerCase();

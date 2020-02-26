@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import { UserContext } from '../../context';
 
-import { emptyFieldValidation, fieldLengthValidationEdit, setDataInLocalStorage, stamp } from '../../utils';
+import { emptyFieldValidation, fieldLengthValidationEdit, setDataInLocalStorage } from '../../utils';
 
 const useEdit = history => {
   const [state, setState] = useContext(UserContext);
@@ -30,6 +30,8 @@ const useEdit = history => {
     }
 
     setCheck({ ...check, checkLengthEdit: false });
+
+    const stamp = `${new Date().getTime()}`;
 
     // article
     const article = {
