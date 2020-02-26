@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Warning = ({ checkLength, checkName, checkEmpty, checkPass, checkLengthEdit }) => (
   <>
-    {checkLength || checkName || checkEmpty || checkPass ? (
+    {checkLength || checkName || checkEmpty || checkPass || checkLengthEdit ? (
       <div className="alert alert-danger" role="alert">
         {checkLength && <p>Form fields must have more than 2 characters and no more than 14.</p>}
         {checkName && <p>Wrong name entered.</p>}
