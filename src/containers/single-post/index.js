@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { UserContext } from '../../context/index';
 
-import { getReadDate } from '../../utils';
+import { getReadDate, setDataInLocalStorage } from '../../utils';
 
-import DelButton from '../del-button';
+import DelButton from '../../components/del-button';
 
 const SinglePost = ({
   match: {
@@ -30,6 +30,16 @@ const SinglePost = ({
   const { title, description, author, created_ad, desc } = article;
   const readDate = getReadDate(created_ad);
 
+  const delPost = () => {
+    const newArticles = articles.filter(el => el.title !== title || el.desc !== desc);
+
+    setState(state => ({ ...state, articles: newArticles }));
+
+    setDataInLocalStorage(users, newArticles);
+
+    history.push('/');
+  };
+
   return (
     <div className="container">
       <div className="col-12 article">
@@ -40,7 +50,7 @@ const SinglePost = ({
           <div className="col-6">{readDate}</div>
         </div>
       </div>
-      <DelButton articles={articles} title={title} desc={desc} history={history} author={author} setState={setState} userAuth={userAuth} users={users} />
+      <DelButton author={author} userAuth={userAuth} delPost={delPost} />
     </div>
   );
 };

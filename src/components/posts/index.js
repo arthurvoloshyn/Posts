@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { conf } from '../../constants';
 
-import Header from '../header';
+import Header from '../../containers/header';
 
 const Posts = () => (
   <div>

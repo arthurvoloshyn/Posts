@@ -3,7 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 
 import { UserContext } from '../../context';
 
-import LocalStorageService from '../../services';
+import { setDataInLocalStorage } from '../../utils';
+
+import Logout from '../../components/logout';
 
 import './header.css';
 
@@ -18,18 +20,13 @@ const Header = () => {
       if (item.auth) {
         item.auth = false;
       }
+
       return item;
     });
 
     setState(state => ({ ...state, users, userAuth: null }));
 
-    const newState = {
-      users,
-      articles
-    };
-
-    const service = new LocalStorageService();
-    service.setItem(newState);
+    setDataInLocalStorage(users, articles);
 
     return <Redirect to="/" />;
   };
@@ -39,14 +36,7 @@ const Header = () => {
       <div className="container">
         <div className="header-row">
           <Link to="/">Logo</Link>
-          {userAuth && (
-            <>
-              <p>{userAuth.userName}</p>
-              <Link onClick={onLogout} to="logout" className="user">
-                Logout
-              </Link>
-            </>
-          )}
+          <Logout userAuth={userAuth} onLogout={onLogout} />
         </div>
       </div>
     </header>

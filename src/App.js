@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { UserProvider } from './context';
 
-import Posts from './containers/posts';
+import Posts from './components/posts';
 
 const App = () => (
   <Router>

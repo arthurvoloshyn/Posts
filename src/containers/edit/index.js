@@ -1,81 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { UserContext } from '../../context';
+import useEdit from '../../hooks/useEdit';
 
-import LocalStorageService from '../../services';
+import Warning from '../../components/warning';
 
-import { stamp } from '../../utils';
+import './edit.css';
 
 const Edit = ({ history }) => {
-  const [state, setState] = useContext(UserContext);
-  const { userAuth, articles, users } = state;
-
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-  const [check, setCheck] = useState(false);
-  const [checkEmpty, setCheckEmpty] = useState(false);
-
-  const onChangeTitle = ({ target: { value } }) => {
-    setTitle(value);
-  };
-
-  const onChangeDesc = ({ target: { value } }) => {
-    setDesc(value);
-  };
-
-  const onSubmitArticle = e => {
-    e.preventDefault();
-
-    if (title.trim() === '' || desc.trim() === '') {
-      return setCheckEmpty(true);
-    }
-
-    setCheckEmpty(false);
-
-    if (title.length < 4 || title.length > 24 || desc.length < 4) {
-      return setCheck(true);
-    }
-
-    setCheck(false);
-
-    // article
-    const article = {
-      title,
-      description: desc,
-      author: userAuth.userName,
-      created_ad: stamp
-    };
-
-    articles.push({ ...article });
-
-    setState(state => ({ ...state, articles }));
-
-    const newState = {
-      users,
-      articles
-    };
-
-    const service = new LocalStorageService();
-    service.setItem(newState);
-
-    history.push(`/${stamp}`);
-    setTitle('');
-    setDesc('');
-  };
-
-  const checkFieldEmpty = checkEmpty ? (
-    <div className="alert alert-danger" role="alert">
-      Fields must not be empty.
-    </div>
-  ) : null;
-
-  const checkForm = check ? (
-    <div className="alert alert-danger" role="alert">
-      Form fields must have more than 4 characters and title should not have more than 24 characters.
-    </div>
-  ) : null;
+  const [onChangeData, onSubmitArticle, check, data, userAuth] = useEdit(history);
+  const { title, desc } = data;
+  const { checkLengthEdit, checkEmpty } = check;
 
   // check auth
   if (!userAuth) {
@@ -86,13 +22,12 @@ const Edit = ({ history }) => {
     <div className="container">
       <form className="create-article" onSubmit={onSubmitArticle}>
         <label htmlFor="title">Title</label>
-        <input type="text" className="form-control" id="title" aria-describedby="title" placeholder="Title" value={title} onChange={onChangeTitle} />
-        <label htmlFor="Textarea1">Description</label>
-        <textarea className="form-control" id="Textarea1" rows="3" value={desc} onChange={onChangeDesc}></textarea>
+        <input type="text" className="form-control" name="title" id="title" aria-describedby="title" placeholder="Title" value={title} onChange={onChangeData} />
+        <label htmlFor="desc">Description</label>
+        <textarea className="form-control desc" name="desc" id="desc" rows="3" placeholder="Description" value={desc} onChange={onChangeData} />
+        <Warning checkLengthEdit={checkLengthEdit} checkEmpty={checkEmpty} />
         <input type="submit" className="btn btn-primary" value="Create" />
       </form>
-      {checkForm}
-      {checkFieldEmpty}
     </div>
   );
 };

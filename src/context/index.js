@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import LocalStorageService from '../services';
+import { getDataFromLocalStorage } from '../utils';
 
 const UserContext = React.createContext([{}, () => {}]);
 
 const UserProvider = ({ children }) => {
-  const service = new LocalStorageService();
-  const localStorageState = service.getItem();
+  const localStorageState = getDataFromLocalStorage();
 
   const [state, setState] = useState({
     userAuth: null,
