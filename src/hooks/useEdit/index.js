@@ -31,7 +31,7 @@ const useEdit = history => {
 
     setCheck({ ...check, checkLengthEdit: false });
 
-    const stamp = `${new Date().getTime()}`;
+    const stamp = (Date.now() / 1000).toFixed();
 
     // article
     const article = {
