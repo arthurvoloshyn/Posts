@@ -48,13 +48,7 @@ const useAuth = () => {
 
       setCheck({ ...check, checkPass: false });
 
-      const newUsers = users.map(({ userName }) => {
-        if (userName === item.userName) {
-          item.auth = true;
-        }
-
-        return item;
-      });
+      const newUsers = users.map(el => (el.userName === item.userName ? { ...el, auth: true } : el));
 
       setState(state => ({ ...state, users: newUsers, userAuth: users[idx] }));
 
