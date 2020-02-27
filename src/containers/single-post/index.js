@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { UserContext } from '../../context/index';
+import { getReadDate } from '../../utils';
 
-import { getReadDate, setDataInLocalStorage } from '../../utils';
+import usePost from '../../hooks/usePost';
 
 import DelButton from '../../components/del-button';
 
@@ -14,10 +14,7 @@ const SinglePost = ({
   },
   history
 }) => {
-  const [state, setState] = useContext(UserContext);
-  const { articles, userAuth, users } = state;
-
-  const article = articles ? articles.find(({ created_ad }) => created_ad === id) : null;
+  const [article, userAuth, delPost] = usePost(id, history);
 
   if (!article) {
     return (
@@ -27,18 +24,8 @@ const SinglePost = ({
     );
   }
 
-  const { title, description, author, created_ad, desc } = article;
+  const { title, description, author, created_ad } = article;
   const readDate = getReadDate(created_ad);
-
-  const delPost = () => {
-    const newArticles = articles.filter(el => el.title !== title || el.desc !== desc);
-
-    setState(state => ({ ...state, articles: newArticles }));
-
-    setDataInLocalStorage(users, newArticles);
-
-    history.push('/');
-  };
 
   return (
     <div className="container">
@@ -61,7 +48,9 @@ SinglePost.propTypes = {
       id: PropTypes.string
     })
   }),
-  history: PropTypes.object
+  history: PropTypes.shape({
+    push: PropTypes.func
+  })
 };
 
 SinglePost.defaultProps = {
@@ -70,7 +59,9 @@ SinglePost.defaultProps = {
       id: ''
     }
   },
-  history: {}
+  history: {
+    push: () => {}
+  }
 };
 
 export default withRouter(SinglePost);

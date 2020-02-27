@@ -1,35 +1,14 @@
-import React, { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { UserContext } from '../../context';
-
-import { setDataInLocalStorage } from '../../utils';
+import useLogout from '../../hooks/useLogout';
 
 import Logout from '../../components/logout';
 
 import './header.css';
 
 const Header = () => {
-  const [state, setState] = useContext(UserContext);
-  const { users, userAuth, articles } = state;
-
-  const onLogout = e => {
-    e.preventDefault();
-
-    users.map(item => {
-      if (item.auth) {
-        item.auth = false;
-      }
-
-      return item;
-    });
-
-    setState(state => ({ ...state, users, userAuth: null }));
-
-    setDataInLocalStorage(users, articles);
-
-    return <Redirect to="/" />;
-  };
+  const [userAuth, onLogout] = useLogout();
 
   return (
     <header>

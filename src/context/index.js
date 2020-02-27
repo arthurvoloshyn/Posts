@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { contextDefaultValue } from '../constants';
+
 import { getDataFromLocalStorage } from '../utils';
 
-const UserContext = React.createContext([{}, () => {}]);
+const UserContext = React.createContext(contextDefaultValue);
 
 const UserProvider = ({ children }) => {
   const localStorageState = getDataFromLocalStorage();
@@ -15,7 +17,7 @@ const UserProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const idx = state.users.findIndex(el => el.auth);
+    const idx = state.users.findIndex(({ auth }) => auth);
 
     if (idx >= 0) {
       setState(state => ({ ...state, userAuth: state.users[idx] }));

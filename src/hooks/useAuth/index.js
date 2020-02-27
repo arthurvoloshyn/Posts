@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 
 import { UserContext } from '../../context';
 
+import { fieldUserName, fieldPass } from '../../constants';
+
 import { emptyFieldValidation, fieldLengthValidation, checkData, setDataInLocalStorage } from '../../utils';
 
 const useAuth = () => {
@@ -33,22 +35,22 @@ const useAuth = () => {
     };
 
     // auth
-    const idx = users.findIndex(el => el.userName.toLowerCase() === item.userName.toLowerCase());
+    const idx = users.findIndex(({ userName }) => userName.toLowerCase() === item.userName.toLowerCase());
 
     if (idx >= 0) {
-      if (checkData('userName', users[idx], item)) {
+      if (checkData(fieldUserName, users[idx], item)) {
         return setCheck({ ...check, checkName: true });
       }
 
       setCheck({ ...check, checkName: false });
 
-      if (checkData('pass', users[idx], item)) {
+      if (checkData(fieldPass, users[idx], item)) {
         return setCheck({ ...check, checkPass: true });
       }
 
       setCheck({ ...check, checkPass: false });
 
-      const newUsers = users.map(el => (el.userName === item.userName ? { ...el, auth: true } : el));
+      const newUsers = users.map(el => (el.userName === item.userName ? { ...el, auth: true } : { ...el }));
 
       setState(state => ({ ...state, users: newUsers, userAuth: users[idx] }));
 

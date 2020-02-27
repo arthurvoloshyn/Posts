@@ -29,3 +29,8 @@ export const conf = [
     exact: true
   }
 ];
+
+export const fieldUserName = 'userName';
+export const fieldPass = 'pass';
+
+export const contextDefaultValue = [{}, () => {}];
