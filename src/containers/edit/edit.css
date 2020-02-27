@@ -1,3 +1,9 @@
+.create-article {
+  margin: auto;
+  padding: 15px;
+  width: 100%;
+}
+
 .desc {
   max-height: 258px;
   min-height: 38px;

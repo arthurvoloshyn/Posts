@@ -8,6 +8,8 @@ import usePost from '../../hooks/usePost';
 
 import DelButton from '../../components/del-button';
 
+import './single-post.css';
+
 const SinglePost = ({
   match: {
     params: { id }
@@ -29,12 +31,14 @@ const SinglePost = ({
 
   return (
     <div className="container">
-      <div className="col-12 article">
-        <h3 className="title-post">{title}</h3>
-        <p className="post-desc">{description}</p>
-        <div className="row">
-          <div className="col-6">{author}</div>
-          <div className="col-6">{readDate}</div>
+      <div className="row">
+        <div className="col-12 article article-post">
+          <h3 className="title-post">{title}</h3>
+          <p className="post-desc">{description}</p>
+          <div className="row">
+            <div className="col-6">{author}</div>
+            <div className="col-6">{readDate}</div>
+          </div>
         </div>
       </div>
       <DelButton author={author} userAuth={userAuth} delPost={delPost} />

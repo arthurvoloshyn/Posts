@@ -20,14 +20,16 @@ const Edit = ({ history }) => {
 
   return (
     <div className="container">
-      <form className="create-article" onSubmit={onSubmitArticle}>
-        <label htmlFor="title">Title</label>
-        <input type="text" className="form-control" name="title" id="title" aria-describedby="title" placeholder="Title" value={title} onChange={onChangeData} />
-        <label htmlFor="desc">Description</label>
-        <textarea className="form-control desc" name="desc" id="desc" rows="3" placeholder="Description" value={desc} onChange={onChangeData} />
-        <Warning checkLengthEdit={checkLengthEdit} checkEmpty={checkEmpty} />
-        <input type="submit" className="btn btn-primary btn-block" value="Create" />
-      </form>
+      <div className="row">
+        <form className="create-article" onSubmit={onSubmitArticle}>
+          <label htmlFor="title">Title</label>
+          <input type="text" className="form-control" name="title" id="title" aria-describedby="title" placeholder="Title" value={title} onChange={onChangeData} />
+          <label htmlFor="desc">Description</label>
+          <textarea className="form-control desc" name="desc" id="desc" rows="3" placeholder="Description" value={desc} onChange={onChangeData} />
+          <Warning checkLengthEdit={checkLengthEdit} checkEmpty={checkEmpty} />
+          <input type="submit" className="btn btn-primary" value="Create" />
+        </form>
+      </div>
     </div>
   );
 };
