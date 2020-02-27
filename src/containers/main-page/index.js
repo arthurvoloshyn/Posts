@@ -18,7 +18,7 @@ const MainPage = () => {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row wrapper">
         <VisibleForm userAuth={userAuth} />
         <Articles articles={currentArticles} />
         <Pagination currentPage={currentPage} totalItems={totalItemsPagination} paginate={paginate} />

@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark navbar-expand-sm">
         <div className="container">
           <Link to="/" className="navbar-brand">
             Logo
