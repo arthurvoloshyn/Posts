@@ -9,7 +9,7 @@ import './article.css';
 const Articles = ({ articles }) => (
   <>
     {articles.map(({ title, created_ad, description, author }) => (
-      <div key={created_ad} className="col-12 article">
+      <div key={created_ad} className="col-12 article list-group-item">
         <Link className="title-post" to={created_ad}>
           {title}
         </Link>

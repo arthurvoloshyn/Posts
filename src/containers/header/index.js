@@ -12,12 +12,14 @@ const Header = () => {
 
   return (
     <header>
-      <div className="container">
-        <div className="header-row">
-          <Link to="/">Logo</Link>
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container">
+          <Link to="/" className="navbar-brand">
+            Logo
+          </Link>
           <Logout userAuth={userAuth} onLogout={onLogout} />
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

@@ -26,7 +26,7 @@ const Edit = ({ history }) => {
         <label htmlFor="desc">Description</label>
         <textarea className="form-control desc" name="desc" id="desc" rows="3" placeholder="Description" value={desc} onChange={onChangeData} />
         <Warning checkLengthEdit={checkLengthEdit} checkEmpty={checkEmpty} />
-        <input type="submit" className="btn btn-primary" value="Create" />
+        <input type="submit" className="btn btn-primary btn-block" value="Create" />
       </form>
     </div>
   );
