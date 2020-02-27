@@ -11,9 +11,9 @@ const usePost = (id, history) => {
   const article = articles ? articles.find(({ created_ad }) => created_ad === id) : null;
 
   const delPost = () => {
-    const { title, desc } = article;
+    const { created_ad } = article;
 
-    const newArticles = articles.filter(el => el.title !== title || el.desc !== desc);
+    const newArticles = articles.filter(el => el.created_ad !== created_ad);
 
     setState(state => ({ ...state, articles: newArticles }));
 
