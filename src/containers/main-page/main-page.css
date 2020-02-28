@@ -13,6 +13,18 @@
   margin: 20px auto;
 }
 
+.btn-form {
+  background-color: #0071ea;
+  border-color: #0071ea;
+  color: #fff;
+}
+
+.btn-form:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+  color: #fff;
+}
+
 .post-desc {
   overflow: hidden;
   white-space: pre-line;

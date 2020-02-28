@@ -19,7 +19,7 @@ const FormAuth = () => {
       <input type="text" name={fieldUserName} id="userName" className="form-control" placeholder="Name" value={userName} onChange={onSetData} />
       <input type="password" name={fieldPass} id="inputPassword" className="form-control" placeholder="Password" value={pass} onChange={onSetData} />
       <Warning checkLength={checkLength} checkName={checkName} checkEmpty={checkEmpty} checkPass={checkPass} />
-      <input className="btn btn-lg btn-primary btn-block" type="submit" value="Sign in" />
+      <input className="btn btn-lg btn-form btn-block" type="submit" value="Sign in" />
     </form>
   );
 };

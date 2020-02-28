@@ -9,7 +9,7 @@ import './article.css';
 const Articles = ({ articles }) => (
   <>
     {articles.map(({ title, created_ad, description, author }) => (
-      <div key={created_ad} className="col-12 article list-group-item">
+      <article key={created_ad} className="col-12 article list-group-item">
         <Link className="title-post" to={created_ad}>
           {title}
         </Link>
@@ -18,7 +18,7 @@ const Articles = ({ articles }) => (
           <div className="col-6">{author}</div>
           <div className="col-6">{getReadDate(created_ad)}</div>
         </div>
-      </div>
+      </article>
     ))}
   </>
 );

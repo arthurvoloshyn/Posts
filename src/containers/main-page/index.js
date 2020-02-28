@@ -17,13 +17,13 @@ const MainPage = () => {
   const [currentPage, paginate, totalItemsPagination, currentArticles] = usePaginate(articles);
 
   return (
-    <div className="container">
-      <div className="row wrapper">
+    <main className="container">
+      <section className="row wrapper">
         <VisibleForm userAuth={userAuth} />
         <Articles articles={currentArticles} />
         <Pagination currentPage={currentPage} totalItems={totalItemsPagination} paginate={paginate} />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

@@ -9,7 +9,7 @@ const VisibleForm = ({ userAuth }) => (
     {!userAuth ? (
       <FormAuth />
     ) : (
-      <Link to="/edit" className="create-ad btn btn-primary">
+      <Link to="/edit" className="create-ad btn btn-form">
         Create Ad
       </Link>
     )}
