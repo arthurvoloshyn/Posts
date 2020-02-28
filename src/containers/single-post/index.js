@@ -30,19 +30,19 @@ const SinglePost = ({
   const readDate = getReadDate(created_ad);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-12 article article-post">
+    <main className="container">
+      <section className="row">
+        <article className="col-12 article article-post">
           <h3 className="title-post">{title}</h3>
           <p className="post-desc">{description}</p>
           <div className="row">
             <div className="col-6">{author}</div>
             <div className="col-6">{readDate}</div>
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
       <DelButton author={author} userAuth={userAuth} delPost={delPost} />
-    </div>
+    </main>
   );
 };
 
