@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getReadDate } from '../../utils';
@@ -41,7 +41,20 @@ const SinglePost = ({
           </div>
         </article>
       </section>
-      <DelButton author={author} userAuth={userAuth} delPost={delPost} />
+
+      <div className="row">
+        {userAuth !== null && userAuth.userName === author ? (
+          <div className="col-6">
+            <DelButton author={author} userAuth={userAuth} delPost={delPost} />
+          </div>
+        ) : null}
+
+        <div className="col-6">
+          <Link to="/" className="btn btn-form">
+            Going back
+          </Link>
+        </div>
+      </div>
     </main>
   );
 };
