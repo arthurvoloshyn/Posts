@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import { prev, next, firstPage } from '../../constants';
-
-import { paginationClasses } from '../../utils';
 
 const Pagination = ({ totalItems, currentPage, paginate }) => {
   if (totalItems <= 1) {
@@ -15,6 +14,11 @@ const Pagination = ({ totalItems, currentPage, paginate }) => {
 
   const isFirstPage = currentPage === firstPage;
   const isLastPage = currentPage === totalItems;
+
+  const paginationClasses = condition =>
+    cn('page-item', {
+      disabled: condition
+    });
 
   return (
     <div className="col-12">

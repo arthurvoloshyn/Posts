@@ -1,5 +1,3 @@
-import cn from 'classnames';
-
 import { listPerPage } from '../constants';
 
 import LocalStorageService from '../services';
@@ -50,8 +48,3 @@ export const setDataInLocalStorage = (users, articles) => {
   const service = new LocalStorageService();
   service.setItem(newState);
 };
-
-export const paginationClasses = condition =>
-  cn('page-item', {
-    disabled: condition
-  });
