@@ -5,11 +5,13 @@ import { getDataFromLocalStorage } from '../../utils';
 const useData = () => {
   const localStorageState = getDataFromLocalStorage();
 
-  const [state, setState] = useState({
+  const initState = {
     userAuth: null,
     articles: localStorageState ? localStorageState.articles : [],
     users: localStorageState ? localStorageState.users : []
-  });
+  };
+
+  const [state, setState] = useState(initState);
 
   useEffect(() => {
     const idx = state.users.findIndex(({ auth }) => auth);
