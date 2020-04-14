@@ -2,7 +2,7 @@ import MainPage from '../containers/main-page';
 import Edit from '../containers/edit';
 import SinglePost from '../containers/single-post';
 
-export const listPerPage = 5;
+export const listsPerPage = 5;
 
 export const prev = 'prev';
 export const next = 'next';

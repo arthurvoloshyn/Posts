@@ -1,5 +1,3 @@
-import { listPerPage } from '../constants';
-
 import LocalStorageService from '../services';
 
 const addPadStart = string => string.padStart(2, '0');
@@ -18,13 +16,14 @@ export const getReadDate = created_ad => {
   return readDate;
 };
 
-export const getDataForCurrentPage = (currentPage, articles) => {
-  const indexOfLastItem = currentPage * listPerPage;
-  const indexOfFirstItem = indexOfLastItem - listPerPage;
-  const totalItemsPagination = Math.ceil(articles.length / listPerPage);
-  const currentArticles = articles.slice(indexOfFirstItem, indexOfLastItem);
+export const getDataForCurrentPage = (currentPage, dataList, listsPerPage) => {
+  const indexOfLastItem = currentPage * listsPerPage;
+  const indexOfFirstItem = indexOfLastItem - listsPerPage;
 
-  return [totalItemsPagination, currentArticles];
+  const totalItemsPagination = Math.ceil(dataList.length / listsPerPage);
+  const currentDataList = dataList.slice(indexOfFirstItem, indexOfLastItem);
+
+  return [totalItemsPagination, currentDataList];
 };
 
 export const emptyFieldValidation = (firstField, secondField) => !!(!firstField.trim() || !secondField.trim());

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { UserContext } from '../../context';
 
-import usePaginate from '../../hooks/usePaginate';
+import usePagination from '../../hooks/usePagination';
 
 import Articles from '../../components/aricles';
 import Pagination from '../../components/pagination';
@@ -14,7 +14,7 @@ const MainPage = () => {
   const [state] = useContext(UserContext);
   const { articles, userAuth } = state;
 
-  const [currentPage, paginate, totalItemsPagination, currentArticles] = usePaginate(articles);
+  const [currentPage, paginate, totalItemsPagination, currentArticles] = usePagination(articles);
 
   return (
     <main className="container">
